@@ -27,7 +27,7 @@ def dataExtractor():
 
     try:
         # create a file with the results
-        with open(f"./submarine/engine/fuel/{filtererdDate}.json", "w+") as file:
+        with open(f"./engine/fuel/{filtererdDate}.json", "w+") as file:
             json.dump(completeFile, file)
     except:
         print('Issue saving the file')
