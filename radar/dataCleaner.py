@@ -1,21 +1,15 @@
 import pandas as pd
+import json
+import glob
 
-newDataSet = {
-    'weather':  ["sunny", "overcast", "raining"],
-    'temperature':  [30, 23, 10]
-}
+allFiles = glob.glob('./submarine/engine/fuel/*.json')
+dfs = []
 
-showData = pd.DataFrame(newDataSet)
+for file in allFiles:
+    readFile = pd.read_json(file, lines=True)
+    print(readFile.to_string())
 
-print(showData.loc[[0,2]])
+    temp = dfs.append(readFile)
 
-
-
-secondDataSet = ['string', 21, 3]
-
-showSecondSet = pd.Series(secondDataSet)
-print(showSecondSet)
-
-
-rcsv = pd.read_csv('C:\Users\mphq\OneDrive\Desktop\stuff\submarine\engine\geo.csv')
-print(rcsv)
+completeData = pd.concat(dfs, ignore_index=True)
+print(completeData)
