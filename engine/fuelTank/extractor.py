@@ -11,7 +11,6 @@ def dataExtractor():
     completeFile = []
     currentDate = datetime.today()
     filtererdDate = currentDate.strftime("%Y%m%d%H%M%S")
-    #filePath = Path('/fuelTank/fuel/')
 
 
     for index, element in enumerate(latitude):
@@ -31,6 +30,5 @@ def dataExtractor():
             json.dump(completeFile, file)
     except:
         print('Issue saving the file')
-
 
 dataExtractor()
