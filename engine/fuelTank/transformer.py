@@ -3,12 +3,12 @@ import csv
 import glob
 from datetime import datetime
 
-#global variables
+#global variables and lists
 numberOfFiles = []
 dataForTransformation = []
 transformationDate = datetime.today().strftime('%Y%m%d%H%M%S')
 
-#prepare the data
+#prepare the data for transformation
 def baseData():
     try:
         extractedFiles = glob.glob('./engine/fuel/*.json')
@@ -16,7 +16,6 @@ def baseData():
             openFile = open(file)
             loadJSON = json.load(openFile)
             numberOfFiles.append(loadJSON)
-            #print(numberOfFiles)
         return numberOfFiles
     except:
         print('Issue loading extracted file')
@@ -27,7 +26,7 @@ def transformer():
         for element in numberOfFiles:
                   with open(f'./engine/propeller/baseDataFrom{transformationDate}.csv', 'a+', newline='') as individualFile:
                         dataWriter = csv.writer(individualFile)
-                        for index, item in enumerate(element):
+                        for item in element:
                         # headers
                             currentWeatherHeader = item['current_weather']
                         # base data
@@ -35,9 +34,15 @@ def transformer():
                             currentLongitude = item['longitude']
                             currentTemperature = currentWeatherHeader['temperature']
                             currentWindspeed = currentWeatherHeader['windspeed']
+                            timeAtExtraction = currentWeatherHeader['time']
                             isItDay = currentWeatherHeader['is_day']
-
-                            dataForTransformation = [currentLatitude, "{:.2f}".format(currentLongitude), currentTemperature, currentWindspeed, isItDay]
+                            # put all needed items into a list
+                            dataForTransformation = [currentLatitude,
+                                                    "{:.2f}".format(currentLongitude),
+                                                    currentTemperature,
+                                                    currentWindspeed,
+                                                    timeAtExtraction,
+                                                    isItDay]
                             dataWriter.writerow(dataForTransformation)
     except:
         print('Issue transforming data')
