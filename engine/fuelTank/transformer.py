@@ -22,7 +22,7 @@ def baseData():
 
 #transform the data to a CSV
 def transformer():
-    try:
+    #try:
         for element in numberOfFiles:
                   with open(f'./engine/propeller/baseDataFrom{transformationDate}.csv', 'a+', newline='') as individualFile:
                         dataWriter = csv.writer(individualFile)
@@ -44,7 +44,25 @@ def transformer():
                                                     timeAtExtraction,
                                                     isItDay]
                             dataWriter.writerow(dataForTransformation)
-    except:
+                        for futureDate in element:
+                                with open(f'./engine/propeller/futureDates{transformationDate}.csv', 'a+', newline='') as individualFile:
+                                    dataWriter = csv.writer(individualFile)
+                                    futureDates = futureDate['hourly']
+                                    futureTime = futureDates['time']
+                                    for index, date in enumerate(futureTime):
+                                        timeForecast = date
+                                        temperatureForecast = futureDates['temperature_2m'][index]
+                                        humidityForecast = futureDates['relativehumidity_2m'][index]
+                                        windspeedForecast = futureDates['windspeed_10m'][index]
+                                        forecastList = [timeForecast,
+                                                        temperatureForecast,
+                                                        humidityForecast,
+                                                        windspeedForecast]
+                                        dataWriter.writerow(forecastList)                                         
+
+
+
+    #except:
         print('Issue transforming data')
 
 baseData()
