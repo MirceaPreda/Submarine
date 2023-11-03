@@ -37,7 +37,7 @@ def transformer():
                             timeAtExtraction = currentWeatherHeader['time']
                             isItDay = currentWeatherHeader['is_day']
                             # put all needed items into a list
-                            dataForTransformation = [currentLatitude,
+                            dataForTransformation = ["{:.2f}".format(currentLatitude),
                                                     "{:.2f}".format(currentLongitude),
                                                     currentTemperature,
                                                     currentWindspeed,

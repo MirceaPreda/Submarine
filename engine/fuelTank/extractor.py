@@ -2,21 +2,38 @@ import requests
 import json
 from datetime import datetime
 from pathlib import Path
+import secretKeys
 
+#global lists
+latitudeList = []
+longitudeList = []
+
+
+def locationExtractor(location):
+
+    try:
+        locationAPI = f"http://api.positionstack.com/v1/forward?access_key={secretKeys.apiSecret}&query={location}"
+        retrieveData = requests.get(locationAPI).text
+        convertToJSON = json.loads(retrieveData)
+        basePath = convertToJSON['data'][0]
+        latitude = basePath['latitude']
+        longitude = basePath['longitude']
+        latitudeList.append(latitude)
+        longitudeList.append(longitude)
+    except:
+        print('Issue finding the location or data is inaccessible')
 
 def dataExtractor():
-    latitude = [52.52, 51.5, 48.8, 38]
-    longitude = [13.41, 0.1, 2.3, 116]
 
     completeFile = []
     currentDate = datetime.today()
     filtererdDate = currentDate.strftime("%Y%m%d%H%M%S")
 
 
-    for index, element in enumerate(latitude):
+    for index, element in enumerate(latitudeList):
         try:
             # cycle through links and extract them
-            baseURL = f"https://api.open-meteo.com/v1/forecast?latitude={element}&longitude={longitude[index]}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m"
+            baseURL = f"https://api.open-meteo.com/v1/forecast?latitude={element}&longitude={longitudeList[index]}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m"
             retrieveData = requests.get(baseURL).text
             convertData = json.loads(retrieveData)
             # push data to an array containing all data for the run
@@ -31,4 +48,7 @@ def dataExtractor():
     except:
         print('Issue saving the file')
 
+
+locationExtractor('Constanta')
 dataExtractor()
+
