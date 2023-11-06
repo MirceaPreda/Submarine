@@ -1,8 +1,7 @@
 import requests
 import json
 from datetime import datetime
-from pathlib import Path
-import secretKeys
+from .secretKeys import apiSecret
 
 #global lists
 latitudeList = []
@@ -12,7 +11,7 @@ longitudeList = []
 def locationExtractor(location):
 
     try:
-        locationAPI = f"http://api.positionstack.com/v1/forward?access_key={secretKeys.apiSecret}&query={location}"
+        locationAPI = f"http://api.positionstack.com/v1/forward?access_key={apiSecret}&query={location}"
         retrieveData = requests.get(locationAPI).text
         convertToJSON = json.loads(retrieveData)
         basePath = convertToJSON['data'][0]
@@ -47,8 +46,3 @@ def dataExtractor():
             json.dump(completeFile, file)
     except:
         print('Issue saving the file')
-
-
-locationExtractor('Constanta')
-dataExtractor()
-

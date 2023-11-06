@@ -23,12 +23,9 @@ def forecastCleaner():
     
     try:
         for file in forecastFiles:
-            readFile = pd.read_csv(file, names=tableHeaders, parse_dates=True)
-            df = pd.DataFrame(data=readFile)
+            readForecast = pd.read_csv(file, names=tableHeaders, parse_dates=True)
+            df = pd.DataFrame(data=readForecast)
             df.plot.scatter(x="Time", y="Temperature")
 
     except:
-        print('forecast error')
-
-forecastCleaner()
-dataCleaner()
+        print('Cannot plot the forecast')
