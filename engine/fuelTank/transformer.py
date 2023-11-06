@@ -64,6 +64,3 @@ def transformer():
 
     except:
         print('Issue transforming data')
-
-baseData()
-transformer()
