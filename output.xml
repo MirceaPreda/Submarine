@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.12.0 on win32)" generated="20231127 16:20:37.813" rpa="false" schemaversion="4">
+<suite id="s1" name="locationAPI" source="c:\Users\mphq\OneDrive\Desktop\stuff\projects\Submarine\hull\meteoAPI\tests\locationAPI.robot">
+<test id="s1-t1" name="API contains more than one node per location" line="20">
+<kw name="Given a list of locations">
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${locations}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20231127 16:20:37.927" level="INFO">Length is 4</msg>
+<status status="PASS" starttime="20231127 16:20:37.927" endtime="20231127 16:20:37.929"/>
+</kw>
+<status status="PASS" starttime="20231127 16:20:37.927" endtime="20231127 16:20:37.929"/>
+</kw>
+<kw name="When an item has more than one node">
+<kw name="Received As Requested" library="locationAPIdata">
+<var>${received}</var>
+<arg>Constanta</arg>
+<arg>CT</arg>
+<msg timestamp="20231127 16:20:38.158" level="INFO">${received} = True</msg>
+<status status="PASS" starttime="20231127 16:20:37.930" endtime="20231127 16:20:38.158"/>
+</kw>
+<status status="PASS" starttime="20231127 16:20:37.930" endtime="20231127 16:20:38.158"/>
+</kw>
+<kw name="Then the first node is the correct one">
+<kw name="Get Variable Value" library="BuiltIn">
+<arg>${received}</arg>
+<doc>Returns variable value or ``default`` if the variable does not exist.</doc>
+<status status="PASS" starttime="20231127 16:20:38.159" endtime="20231127 16:20:38.159"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${received}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<msg timestamp="20231127 16:20:38.160" level="FAIL">Evaluating expression '' failed: ValueError: Expression cannot be empty.</msg>
+<status status="FAIL" starttime="20231127 16:20:38.159" endtime="20231127 16:20:38.161"/>
+</kw>
+<status status="FAIL" starttime="20231127 16:20:38.159" endtime="20231127 16:20:38.161"/>
+</kw>
+<doc>Location has more than one node</doc>
+<tag>Regression</tag>
+<status status="FAIL" starttime="20231127 16:20:37.926" endtime="20231127 16:20:38.161">Evaluating expression '' failed: ValueError: Expression cannot be empty.</status>
+</test>
+<status status="FAIL" starttime="20231127 16:20:37.817" endtime="20231127 16:20:38.163"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">Regression</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="locationAPI">locationAPI</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

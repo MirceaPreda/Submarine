@@ -3,7 +3,6 @@ import matplotlib.pyplot as plot
 import glob
 
 
-
 def dataCleaner():
 
     tableHeaders = ['Latitude', 'Longitude', 'Temperature', 'Windspeed', 'Date', 'Day']

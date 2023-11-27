@@ -1,7 +1,7 @@
 import requests
 import json
 from datetime import datetime
-from .secretKeys import apiSecret
+from secretKeys import apiSecret
 
 #global lists
 latitudeList = []
