@@ -11,3 +11,4 @@ Extract, analyze and display data
 
 # WIP:
       - Faster plotting for the forecast
+      - Test cases for the APIs
