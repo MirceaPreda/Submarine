@@ -2,3 +2,6 @@
 engine/fuelTank/secretKeys.py
 *.json
 *.csv
+*.pyc
+*.pyc
+hull/meteoAPI/resources/secretKeys.py
